@@ -8,6 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
@@ -544,6 +547,167 @@ const Index = () => {
           </div>
         );
 
+      case "login":
+        return (
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold text-center">Вход в систему</h2>
+            <div className="max-w-md mx-auto">
+              <Tabs defaultValue="student" className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger
+                    value="student"
+                    className="flex items-center gap-2"
+                  >
+                    <Icon name="User" size={16} />
+                    Ученики
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="teacher"
+                    className="flex items-center gap-2"
+                  >
+                    <Icon name="GraduationCap" size={16} />
+                    Учителя
+                  </TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="student" className="space-y-4">
+                  <Card className="border-0 shadow-lg">
+                    <CardHeader className="text-center">
+                      <div className="text-4xl mb-2">👨‍🎓</div>
+                      <CardTitle>Вход для учеников</CardTitle>
+                      <CardDescription>
+                        Введите свои данные для доступа к электронному журналу
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="student-login">
+                          Логин (номер дневника)
+                        </Label>
+                        <Input
+                          id="student-login"
+                          type="text"
+                          placeholder="Например: 2024001"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="student-password">Пароль</Label>
+                        <Input
+                          id="student-password"
+                          type="password"
+                          placeholder="Введите пароль"
+                          className="w-full"
+                        />
+                      </div>
+                      <Button className="w-full" size="lg">
+                        <Icon name="LogIn" size={16} className="mr-2" />
+                        Войти в журнал
+                      </Button>
+                      <div className="text-center space-y-2">
+                        <p className="text-sm text-muted-foreground">
+                          Забыли пароль? Обратитесь к классному руководителю
+                        </p>
+                        <div className="bg-muted/50 p-3 rounded-lg">
+                          <p className="text-xs text-muted-foreground">
+                            <strong>Демо-доступ:</strong>
+                            <br />
+                            Логин: demo2024
+                            <br />
+                            Пароль: student123
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+
+                <TabsContent value="teacher" className="space-y-4">
+                  <Card className="border-0 shadow-lg">
+                    <CardHeader className="text-center">
+                      <div className="text-4xl mb-2">👩‍🏫</div>
+                      <CardTitle>Вход для учителей</CardTitle>
+                      <CardDescription>
+                        Авторизуйтесь для доступа к системе управления журналом
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="teacher-login">
+                          Логин (табельный номер)
+                        </Label>
+                        <Input
+                          id="teacher-login"
+                          type="text"
+                          placeholder="Например: T001"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="teacher-password">Пароль</Label>
+                        <Input
+                          id="teacher-password"
+                          type="password"
+                          placeholder="Введите пароль"
+                          className="w-full"
+                        />
+                      </div>
+                      <Button className="w-full" size="lg">
+                        <Icon name="LogIn" size={16} className="mr-2" />
+                        Войти в систему
+                      </Button>
+                      <div className="text-center space-y-2">
+                        <p className="text-sm text-muted-foreground">
+                          Проблемы с входом? Обратитесь к администратору
+                        </p>
+                        <div className="bg-muted/50 p-3 rounded-lg">
+                          <p className="text-xs text-muted-foreground">
+                            <strong>Демо-доступ:</strong>
+                            <br />
+                            Логин: teacher001
+                            <br />
+                            Пароль: teacher123
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+
+              <div className="mt-8 space-y-4">
+                <div className="text-center">
+                  <h3 className="font-semibold mb-2">Возможности системы:</h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-blue-900 mb-2">
+                      Для учеников:
+                    </h4>
+                    <ul className="text-xs text-blue-800 space-y-1">
+                      <li>• Просмотр оценок</li>
+                      <li>• Домашние задания</li>
+                      <li>• Расписание уроков</li>
+                      <li>• Посещаемость</li>
+                    </ul>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
+                    <h4 className="font-medium text-purple-900 mb-2">
+                      Для учителей:
+                    </h4>
+                    <ul className="text-xs text-purple-800 space-y-1">
+                      <li>• Ведение журнала</li>
+                      <li>• Выставление оценок</li>
+                      <li>• Отметки посещаемости</li>
+                      <li>• Задание домашних работ</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -565,6 +729,7 @@ const Index = () => {
                 { id: "schedule", label: "Расписание", icon: "Calendar" },
                 { id: "journal", label: "Журнал", icon: "BookOpen" },
                 { id: "teachers", label: "Учителя", icon: "Users" },
+                { id: "login", label: "Вход", icon: "LogIn" },
               ].map((tab) => (
                 <Button
                   key={tab.id}
